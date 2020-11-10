@@ -1,17 +1,17 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const auth = require("../../middleware/auth");
-const Student = require("../../models/Student");
-const Course = require("../../models/Student");
+const auth = require('../../middleware/auth');
+const Student = require('../../models/Student');
+const Course = require('../../models/Student');
 //Get all Student
-router.get("/", (req,res) => {
+router.get('/', (req,res) => {
     Student.find()
     .sort({name: -1})
     .then(students => res.json(students))
 });
 
 //Show one student
-router.get("/:id", (req,res) => {
+router.get('/:id', (req,res) => {
     Student.findById(req.params.id)
     .then(student => res.json(student))
     .catch(err => res.status(404).json({
@@ -20,7 +20,7 @@ router.get("/:id", (req,res) => {
 });
 
 //New Student Route
- router.post("/", auth, (req,res) =>{
+ router.post('/', auth, (req,res) =>{
     const NewStudent = new Student(req.body);
     //console.log(NewStudent.courses[0])
     var sumCourses = 0
@@ -32,9 +32,9 @@ router.get("/:id", (req,res) => {
             for (var i = 0; i < scores.length; i++){
                 sum += scores[i];
             }
-        //console.log("sum: " + sum)
+        //console.log('sum: ' + sum)
         var average = sum / scores.length
-        //console.log("average:" + average)
+        //console.log('average:' + average)
         NewStudent.courses[j].courseAverage = (average.toFixed(2))
         //console.log(NewStudent.courses[j].courseAverage)
         
@@ -51,7 +51,7 @@ router.get("/:id", (req,res) => {
 });
 
 //New Course Route
-router.post("/:id", (req,res) => {
+router.post('/:id', (req,res) => {
     var newCourse = {
         courseName : req.body.courseName,
         scores: req.body.scores,
@@ -77,7 +77,7 @@ router.post("/:id", (req,res) => {
 
 
 //Edit Student Route
-router.put("/:id", (req,res) => {
+router.put('/:id', (req,res) => {
     
     var newData = req.body
     var sumCourses = 0
@@ -89,9 +89,9 @@ router.put("/:id", (req,res) => {
             for (var i = 0; i < scores.length; i++){
                 sum += scores[i];
         }
-                        //console.log("sum: " + sum)
+                        //console.log('sum: ' + sum)
         var average = (sum / scores.length)
-                        //console.log("average:" + average)
+                        //console.log('average:' + average)
         newData.courses[j].courseAverage = Math.round(average.toFixed(2)) ;                       //console.log(NewStudent.courses[j].courseAverage)
                         
         sumCourses += (newData.courses[j].courseAverage)
@@ -107,7 +107,7 @@ router.put("/:id", (req,res) => {
         } else {
             
             
-            res.json({update: "Success"})
+            res.json({update: 'Success'})
         }
     });
 
@@ -117,7 +117,7 @@ router.put("/:id", (req,res) => {
 
 
 //Delete Student Route
-router.delete("/:id", auth, (req, res) => {
+router.delete('/:id', auth, (req, res) => {
     Student.findById(req.params.id)
     .then(student => student.remove()
         .then(() => res.json({success: true})))

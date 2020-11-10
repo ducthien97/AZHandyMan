@@ -1,33 +1,33 @@
 <template>
   <section>
-    <div style="margin-top:10px">
-      <div style="margin-top:10px">
+    <div style='margin-top:10px'>
+      <div style='margin-top:10px'>
         <label><strong>Name:</strong></label>
-        <input style="margin-left:10px" type="text" v-model="savedObject.userName" />
+        <input style='margin-left:10px' type='text' v-model='savedObject.userName' />
       </div>
 
-      <div style="margin-top:10px">
-        <label for=""><strong>Position:</strong></label>
-        <input style="margin-left:10px" type="text" v-model="savedObject.position" />
+      <div style='margin-top:10px'>
+        <label for=''><strong>Position:</strong></label>
+        <input style='margin-left:10px' type='text' v-model='savedObject.position' />
       </div>
 
-      <div style="margin-top:10px">
+      <div style='margin-top:10px'>
         <label><strong>Tel:</strong></label>
-        <input style="margin-left:10px" type="text" v-model="savedObject.phoneNum" />
+        <input style='margin-left:10px' type='text' v-model='savedObject.phoneNum' />
       </div>
 
-      <div style="margin-top:5px">
+      <div style='margin-top:5px'>
         <label><strong>Email:</strong></label>
-        <input style="margin-left:10px " type="text" v-model="savedObject.email" />
+        <input style='margin-left:10px ' type='text' v-model='savedObject.email' />
       </div>
 
-      <div style="margin-top:5px">
+      <div style='margin-top:5px'>
         <label><strong>PhotoURL:</strong></label>
-        <input style="margin-left:10px " type="text" v-model="savedObject.photo" />
+        <input style='margin-left:10px ' type='text' v-model='savedObject.photo' />
       </div>
 
-      <button @click="saveData" style="margin-top:10px">Save User</button>
-      <button @click="cancelChange" style="margin-top:10px">Cancel Changes</button>
+      <button @click='saveData' style='margin-top:10px'>Save User</button>
+      <button @click='cancelChange' style='margin-top:10px'>Cancel Changes</button>
     </div>
   </section>
 </template>

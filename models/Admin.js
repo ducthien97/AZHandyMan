@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AdminSchema = new Schema({
@@ -20,4 +20,4 @@ const AdminSchema = new Schema({
         default: Date.now
     },
 })
-module.exports = Item = mongoose.model("admin", AdminSchema);
+module.exports = Item = mongoose.model('admin', AdminSchema);

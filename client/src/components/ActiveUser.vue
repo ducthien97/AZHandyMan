@@ -1,7 +1,7 @@
 <template>
   <section>
-    <div class="container">
-      <div v-if="!isEditing">
+    <div class='container'>
+      <div v-if='!isEditing'>
         <h2>{{ userName }}</h2>
         <p><strong>Position:</strong> {{ position }}</p>
         <p><strong>Phone Number:</strong> {{ phoneNum }}</p>
@@ -9,21 +9,21 @@
         <p> {{ isEditing }} </p>
       </div>
 
-      <EditUser :idP ="userLocal.id"
-      :userNameP="userLocal.userName"
-      :phoneNumP ="userLocal.phoneNum"
-      :positionP ="userLocal.position"
-      :emailP="userLocal.email"
-      :photoP="userLocal.photo"
-      :isEditingP ="userLocal.isEditing"
-      @save-user ="saveUser"
-      @cancel-change ="cancelChange"
-      v-if="isEditing"></EditUser>
-      <div class="image">
-        <img :src="photo" />
+      <EditUser :idP ='userLocal.id'
+      :userNameP='userLocal.userName'
+      :phoneNumP ='userLocal.phoneNum'
+      :positionP ='userLocal.position'
+      :emailP='userLocal.email'
+      :photoP='userLocal.photo'
+      :isEditingP ='userLocal.isEditing'
+      @save-user ='saveUser'
+      @cancel-change ='cancelChange'
+      v-if='isEditing'></EditUser>
+      <div class='image'>
+        <img :src='photo' />
       </div>
-      <button @click="deleteUser">Delete User</button>
-      <button @click="editingUser" style="margin-left:10px">Edit User</button>
+      <button @click='deleteUser'>Delete User</button>
+      <button @click='editingUser' style='margin-left:10px'>Edit User</button>
     </div>
   </section>
 </template>

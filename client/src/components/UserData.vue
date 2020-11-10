@@ -1,33 +1,28 @@
 <template>
   <section>
-    <div style="margin-top:10px">
-      <form @submit.prevent="submitData">
-        <div style="margin-top:10px">
+    <div style='margin-top:10px'>
+      <form @submit.prevent='submitData'>
+        <div style='margin-top:10px'>
           <label><strong>Name:</strong></label>
-          <input style="margin-left:10px" type="text" v-model="enteredName" />
+          <input style='margin-left:10px' type='text' v-model='enteredName' />
         </div>
 
-        <div style="margin-top:10px">
-          <label for=""><strong>Position:</strong></label>
-          <input style="margin-left:10px" type="text" v-model="enteredPosition" />
+        <div style='margin-top:10px'>
+          <label for=''><strong>Position:</strong></label>
+          <input style='margin-left:10px' type='text' v-model='enteredPosition' />
         </div>
 
-        <div style="margin-top:10px">
+        <div style='margin-top:10px'>
           <label><strong>Tel:</strong></label>
-          <input style="margin-left:10px" type="text" v-model="enteredPhoneNum" />
+          <input style='margin-left:10px' type='text' v-model='enteredPhoneNum' />
         </div>
 
-        <div style="margin-top:5px">
+        <div style='margin-top:5px'>
           <label><strong>Email:</strong></label>
-          <input style="margin-left:10px " type="text" v-model="enteredEmail" />
+          <input style='margin-left:10px ' type='text' v-model='enteredEmail' />
         </div>
 
-        <div style="margin-top:5px">
-          <label><strong>PhotoURL:</strong></label>
-          <input style="margin-left:10px " type="text" v-model="enteredPhoto" />
-        </div>
-
-        <button style="margin-top:10px">Add User</button>
+        <button style='margin-top:10px'>Add User</button>
       </form>
     </div>
   </section>
@@ -42,7 +37,6 @@ export default {
       enteredEmail: '',
       enteredName: '',
       enteredPosition: '',
-      enteredPhoto: '',
     };
   },
   // props:['userName', 'phoneNum', 'email' , 'id']
@@ -57,13 +51,11 @@ export default {
         this.enteredPhoneNum,
         this.enteredEmail,
         this.enteredPosition,
-        this.enteredPhoto,
       );
       this.enteredPhoneNum = '';
       this.enteredEmail = '';
       this.enteredName = '';
       this.enteredPosition = '';
-      this.enteredPhoto = '';
     },
   },
 };

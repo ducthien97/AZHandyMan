@@ -1,17 +1,15 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/test">Test</router-link> |
-      <router-link to="/the-office">The Office</router-link>
+  <div id='app'>
+    <div id='nav'>
+      <nav-bar></nav-bar>
     </div>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-@import "@/assets/styles/main.scss";
+<style lang='scss'>
+@import '@/assets/styles/main.scss';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,3 +31,13 @@
   }
 }
 </style>
+
+<script>
+import NavBar from './components/NavBar.vue';
+
+export default {
+  components: {
+    NavBar,
+  },
+};
+</script>

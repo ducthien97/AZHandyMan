@@ -2,24 +2,24 @@
   <section>
     <div>
       <ActiveUser
-        v-for="user in users"
-        :key="user.workerID"
-        :userName="user.name"
-        :phoneNum="user.workerPhoneNumber"
-        :id="user.workerID"
-        :email="user.workerEmail"
-        :photo="user.photo"
-        :position="user.expertise"
-        @delete-user="deleteUser"
+        v-for='user in users'
+        :key='user.workerID'
+        :userName='user.name'
+        :phoneNum='user.workerPhoneNumber'
+        :id='user.workerID'
+        :email='user.workerEmail'
+        :photo='user.photoURL'
+        :position='user.expertise'
+        @delete-user='deleteUser'
         :is-editing ='user.isEditing'
         @editing-user ='editingUser'
         @save-user ='saveUser'
         @cancel-change='cancelChange'
       ></ActiveUser>
-      <button @click="toggleNewForm">Create New User</button>
-      <button @click="deleteAllUser">Delete All User</button>
+      <button @click='toggleNewForm'>Create New User</button>
+      <button @click='deleteAllUser'>Delete All User</button>
 
-      <UserData v-show="newUserForm" @submit-data="addUser"></UserData>
+      <UserData v-show='newUserForm' @submit-data='addUser'></UserData>
     </div>
   </section>
 </template>
@@ -28,8 +28,9 @@
 import axios from 'axios';
 import ActiveUser from '../components/ActiveUser.vue';
 import UserData from '../components/UserData.vue';
+// import thePhoto from '../assets/logo.png';
 
-// import EditUser from "../components/EditUser.vue";
+// import EditUser from '../components/EditUser.vue';
 export default {
   name: 'TheOffice',
   watch: {},
@@ -69,17 +70,33 @@ export default {
       console.log('Calling from toggle method');
       this.newUserForm = true;
     },
-    addUser(enteredName, enteredPhoneNum, email, position, photo) {
+    addUser(enteredName, enteredPhoneNum, email, expertise) {
       const newUser = {
         id: Date.now().toString(),
-        userName: enteredName,
-        phoneNum: enteredPhoneNum,
-        email,
-        position,
-        photo,
+        workerID: Date.now().toString(),
+        name: enteredName,
+        workerPhoneNumber: enteredPhoneNum,
+        workerEmail: email,
+        expertise,
       };
-      this.users.push(newUser);
-      this.newUserForm = false;
+      axios
+        .post('http://localhost:5000/api/workers', newUser, {
+          headers: {
+            'x-auth-token': localStorage.getItem('token'),
+          },
+        })
+        .then((response) => {
+          console.log(response);
+          console.log(localStorage.getItem('token'));
+        })
+        .catch((error) => {
+          console.log(error);
+          console.log(localStorage.getItem('token'));
+          this.errored = true;
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     deleteUser(id) {
       console.log('calling from inside deleteUser/App.vue');
@@ -87,7 +104,7 @@ export default {
     },
     editingUser(id) {
       console.log('Calling from inside editingUser/App.vue');
-      const foundUserIndex = this.users.findIndex((user) => user.id === id);
+      const foundUserIndex = this.users.findIndex((user) => user.workerID === id);
       console.log(foundUserIndex);
       this.users[foundUserIndex].isEditing = true;
     },

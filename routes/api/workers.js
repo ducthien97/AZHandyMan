@@ -1,10 +1,12 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const auth = require("../../middleware/auth");
-const WorkerS = require("../../models/Worker");
-//const Job = require("../../models/Worker");
+//const cors = require('cors');
+const auth = require('../../middleware/auth');
+const WorkerS = require('../../models/Worker');
+//const Job = require('../../models/Worker');
 //Get all worker
-router.get("/", (req, res) => {
+
+router.get('/', (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   WorkerS.find()
     .sort({ name: -1 })
@@ -12,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 //Show one worker
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   WorkerS.findById(req.params.id)
     .then((worker) => res.json(worker))
     .catch((err) =>
@@ -23,7 +25,8 @@ router.get("/:id", (req, res) => {
 });
 
 //New worker Route
-router.post("/", auth, (req, res) => {
+router.post('/', auth, (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
   const NewWorker = new WorkerS(req.body);
   //console.log(Newworker.courses[0])
   console.log(NewWorker);
@@ -31,7 +34,7 @@ router.post("/", auth, (req, res) => {
 });
 
 //New Course Route
-router.post("/:id", (req, res) => {
+router.post('/:id', (req, res) => {
   var newJob = {
     jobName: req.body.jobName,
     score: req.body.score,
@@ -57,7 +60,7 @@ router.post("/:id", (req, res) => {
 });
 
 //Edit worker Route
-// router.put("/:id", (req, res) => {
+// router.put('/:id', (req, res) => {
 //   var newData = req.body;
 //   var sumCourses = 0;
 //   var courses = [...newData.courses];
@@ -68,9 +71,9 @@ router.post("/:id", (req, res) => {
 //     for (var i = 0; i < scores.length; i++) {
 //       sum += scores[i];
 //     }
-//     //console.log("sum: " + sum)
+//     //console.log('sum: ' + sum)
 //     var average = sum / scores.length;
-//     //console.log("average:" + average)
+//     //console.log('average:' + average)
 //     newData.courses[j].courseAverage = Math.round(average.toFixed(2)); //console.log(Newworker.courses[j].courseAverage)
 
 //     sumCourses += newData.courses[j].courseAverage;
@@ -85,13 +88,13 @@ router.post("/:id", (req, res) => {
 //     if (err) {
 //       res.status(500).json({ err: err });
 //     } else {
-//       res.json({ update: "Success" });
+//       res.json({ update: 'Success' });
 //     }
 //   });
 // });
 
 //Delete worker Route
-router.delete("/:id", auth, (req, res) => {
+router.delete('/:id', auth, (req, res) => {
   WorkerS.findById(req.params.id)
     .then((worker) => worker.remove().then(() => res.json({ success: true })))
     .catch((err) => res.status(404).json({ success: false }));

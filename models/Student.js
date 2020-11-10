@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
     
 const CourseSchema = new Schema({
@@ -12,7 +12,7 @@ const CourseSchema = new Schema({
     },
     instructor:{
         type: String,
-        default: "Staff"
+        default: 'Staff'
     },
     courseAverage :{
         type: Number,
@@ -39,5 +39,5 @@ const StudentSchema = new Schema({
 
 
 })
-module.exports = Course = mongoose.model("course", CourseSchema)
-module.exports = Student = mongoose.model("student", StudentSchema)
+module.exports = Course = mongoose.model('course', CourseSchema)
+module.exports = Student = mongoose.model('student', StudentSchema)

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
     
 const JobSchema = new Schema({
@@ -12,7 +12,7 @@ const JobSchema = new Schema({
     },
     customer:{
         type: String,
-        default: "Annonymous Customer"
+        default: 'Annonymous Customer'
     },
     jobDescription :{
         type: String,
@@ -43,8 +43,16 @@ const WorkerSchema = new Schema({
     },
     expertise:{
         type: String,
-        default: "Unavailable"
+        default: 'Unavailable'
+    },
+    photoURL:{
+        type: String,
+        default: 'https://previews.123rf.com/images/vector2011/vector20111609/vector2011160900023/63151179-handyman-wearing-work-clothes-and-a-belt-with-tool.jpg'
+    },
+    isEditing:{
+        type: Boolean,
+        default: false
     }
 })
-module.exports = Job = mongoose.model("job", JobSchema)
-module.exports = WorkerS = mongoose.model("worker", WorkerSchema)
+module.exports = Job = mongoose.model('job', JobSchema)
+module.exports = WorkerS = mongoose.model('worker', WorkerSchema)
