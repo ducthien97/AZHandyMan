@@ -27,7 +27,7 @@ router.get('/:id', (req, res) => {
 //New worker Route
 router.post('/', auth, (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
-  const NewWorker = new WorkerS(req.body);
+  const NewWorker = new WorkerS(req.body)
   //console.log(Newworker.courses[0])
   console.log(NewWorker);
   NewWorker.save().then((worker) => res.json(worker));

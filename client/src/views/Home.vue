@@ -1,29 +1,39 @@
 <template>
   <div class='home'>
-    <button is-primary>Login</button>
-    <img alt='Vue logo' src='../assets/logo.png' />
-    <login-page></login-page>
-    <HelloWorld msg='Welcome to Your Vue.js App' />
+    <login-page v-if="loginForm" @close-form='closeLoginForm'></login-page>
+    <button v-if="!loginForm" @click="toggleLoginForm" >Login</button>
+    <retired-page v-show="false"></retired-page>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
-import LoginPage from '../components/LoginPage.vue';
+// import HelloWorld from '@/components/HelloWorld.vue';
+import LoginPage from '../components/PrettyLoginPage.vue';
+import RetiredPage from '../components/LoginPageRetired.vue';
 // import NavBar from '../components/NavBar.vue';
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld,
     LoginPage,
+    RetiredPage,
     // NavBar,
   },
   data() {
     return {
-      isComponentModalActive: false,
+      loginForm: false,
     };
+  },
+  methods: {
+    toggleLoginForm() {
+      this.loginForm = true;
+      console.log(this.loginForm);
+    },
+    closeLoginForm() {
+      this.loginForm = false;
+      console.log(this.loginForm);
+    },
   },
 };
 </script>

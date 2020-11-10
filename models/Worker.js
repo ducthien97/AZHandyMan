@@ -38,7 +38,7 @@ const WorkerSchema = new Schema({
         required: true
     },
     workerPhoneNumber: {
-        type: Number,
+        type: String,
         required: true
     },
     expertise:{

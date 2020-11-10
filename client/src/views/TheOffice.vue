@@ -1,12 +1,14 @@
 <template>
   <section>
     <div>
+      <h2 style="font-size:2rem">Our Team</h2>
       <ActiveUser
         v-for='user in users'
         :key='user.workerID'
         :userName='user.name'
         :phoneNum='user.workerPhoneNumber'
         :id='user.workerID'
+        :objectID='user._id'
         :email='user.workerEmail'
         :photo='user.photoURL'
         :position='user.expertise'
@@ -41,9 +43,9 @@ export default {
   updated() {
     console.log('Hello from updated()/TheOffice.vue');
   },
-  mounted() {
+  beforeMount() {
     axios
-      .get('http://localhost:5000/api/workers')
+      .get('http://192.168.1.198:5000/api/workers')
       .then((response) => {
         // response.headers()
         this.users = response.data;
@@ -80,14 +82,15 @@ export default {
         expertise,
       };
       axios
-        .post('http://localhost:5000/api/workers', newUser, {
+        .post('http://192.168.1.198:5000/api/workers', newUser, {
           headers: {
-            'x-auth-token': localStorage.getItem('token'),
+            'x-auth-token': localStorage.getItem('x-auth-token'),
           },
         })
         .then((response) => {
           console.log(response);
           console.log(localStorage.getItem('token'));
+          this.users.push(response.data);
         })
         .catch((error) => {
           console.log(error);
@@ -100,7 +103,23 @@ export default {
     },
     deleteUser(id) {
       console.log('calling from inside deleteUser/App.vue');
-      this.users = this.users.filter((user) => user.workerID !== id);
+      console.log(id);
+      const link = `http://192.168.1.198:5000/api/workers/${id}`;
+      axios
+        .delete(link, {
+          headers: {
+            'x-auth-token': localStorage.getItem('x-auth-token'),
+          },
+        })
+        .then((response) => {
+          this.users.splice(id, 1);
+          console.log(response);
+          console.log(this.users);
+        })
+        .catch((error) => {
+          console.log(localStorage.getItem('x-auth-token'));
+          console.log(error);
+        });
     },
     editingUser(id) {
       console.log('Calling from inside editingUser/App.vue');

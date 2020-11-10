@@ -35,6 +35,9 @@ export default {
   name: 'ActiveUser',
   components: { EditUser },
   props: {
+    objectID: {
+      type: String,
+    },
     userName: {
       type: String,
       required: true,
@@ -81,7 +84,7 @@ export default {
     deleteUser() {
       console.log('Calling from deleteUser/ActiveUser.vue');
       console.log(this.id);
-      this.$emit('delete-user', this.id);
+      this.$emit('delete-user', this.objectID);
     },
     editingUser() {
       console.log('Calling from editUser/ActiveUser.vue');

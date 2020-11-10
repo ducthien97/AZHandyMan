@@ -14,7 +14,7 @@
 
         <div style='margin-top:10px'>
           <label><strong>Tel:</strong></label>
-          <input style='margin-left:10px' type='text' v-model='enteredPhoneNum' />
+          <input style='margin-left:10px' type='tel' v-model='enteredPhoneNum' />
         </div>
 
         <div style='margin-top:5px'>
