@@ -15,8 +15,11 @@
       <b-navbar-item href='/about'>
         About
       </b-navbar-item>
-      <b-navbar-item href='/the-office'>
-        The Office
+      <b-navbar-item href='/our-workers'>
+        Our Workers
+      </b-navbar-item>
+      <b-navbar-item href='/employee-table'>
+        Employee Table
       </b-navbar-item>
     </template>
 

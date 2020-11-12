@@ -95,6 +95,7 @@ export default {
         .catch((error) => {
           console.log(error);
           console.log(localStorage.getItem('token'));
+          alert(error);
           this.errored = true;
         })
         .finally(() => {
@@ -119,6 +120,7 @@ export default {
         .catch((error) => {
           console.log(localStorage.getItem('x-auth-token'));
           console.log(error);
+          alert(error);
         });
     },
     editingUser(id) {

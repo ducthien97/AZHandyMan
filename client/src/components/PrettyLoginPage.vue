@@ -60,7 +60,7 @@ export default {
         .then((response) => {
           console.log(response.data.token);
           localStorage.setItem('x-auth-token', response.data.token);
-          this.$router.push('/the-office');
+          this.$router.push('/our-workers');
         })
         .catch((error) => {
           console.log(error);

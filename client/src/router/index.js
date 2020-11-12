@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
 import TestPage from '@/views/TestPage.vue';
 import TheOffice from '../views/TheOffice.vue';
+import EmployeeTable from '../views/EmployeeTable.vue';
 
 Vue.use(VueRouter);
 
@@ -25,9 +26,14 @@ const routes = [{
   component: TestPage,
 },
 {
-  path: '/the-office',
+  path: '/our-workers',
   name: 'TheOffice',
   component: TheOffice,
+},
+{
+  path: '/employee-table',
+  name: 'EmployeeTable',
+  component: EmployeeTable,
 },
 ];
 
