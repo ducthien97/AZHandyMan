@@ -10,11 +10,12 @@
       </div>
 
       <EditUser :idP ='userLocal.id'
-      :userNameP='userLocal.userName'
-      :phoneNumP ='userLocal.phoneNum'
-      :positionP ='userLocal.position'
-      :emailP='userLocal.email'
+      :userNameP='userLocal.name'
+      :phoneNumP ='userLocal.workerPhoneNumber'
+      :positionP ='userLocal.expertise'
+      :emailP='userLocal.workerEmail'
       :photoP='userLocal.photo'
+      :objectID='userLocal.objectID'
       :isEditingP ='userLocal.isEditing'
       @save-user ='saveUser'
       @cancel-change ='cancelChange'
@@ -69,13 +70,14 @@ export default {
   data() {
     return {
       userLocal: {
-        userName: this.userName,
+        name: this.userName,
         id: this.id,
-        position: this.position,
-        email: this.email,
-        phoneNum: this.phoneNum,
+        expertise: this.position,
+        workerEmail: this.email,
+        workerPhoneNumber: this.phoneNum,
         photo: this.photo,
         isEditing: this.isEditing,
+        objectID: this.objectID,
       },
     };
   },

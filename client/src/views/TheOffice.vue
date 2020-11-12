@@ -45,7 +45,7 @@ export default {
   },
   beforeMount() {
     axios
-      .get('http://192.168.1.198:5000/api/workers')
+      .get('http://localhost:5000/api/workers')
       .then((response) => {
         // response.headers()
         this.users = response.data;
@@ -82,7 +82,7 @@ export default {
         expertise,
       };
       axios
-        .post('http://192.168.1.198:5000/api/workers', newUser, {
+        .post('http://localhost:5000/api/workers', newUser, {
           headers: {
             'x-auth-token': localStorage.getItem('x-auth-token'),
           },
@@ -104,7 +104,7 @@ export default {
     deleteUser(id) {
       console.log('calling from inside deleteUser/App.vue');
       console.log(id);
-      const link = `http://192.168.1.198:5000/api/workers/${id}`;
+      const link = `http://localhost:5000/api/workers/${id}`;
       axios
         .delete(link, {
           headers: {
@@ -129,13 +129,23 @@ export default {
     },
     saveUser(savedObject) {
       console.log('Calling from inside saveUser()/App.vue');
-      const { id } = savedObject;
-      const foundUserIndex = this.users.findIndex((user) => user.id === id);
-      const editedUser = savedObject;
-      console.log(editedUser);
-      this.users = this.users.filter((user) => user.id !== id);
-      this.users.splice(foundUserIndex, 0, editedUser);
-      console.log(this.users);
+      console.log(savedObject);
+      const { objectID } = savedObject;
+      console.log(objectID);
+      axios
+        .put(`http://localhost:5000/api/workers/${objectID}`, savedObject)
+        .then((r) => {
+          console.log(savedObject);
+          const foundUserIndex = this.users.findIndex(
+            (user) => user._id === savedObject.objectID,
+          );
+          console.log(foundUserIndex);
+          this.users[foundUserIndex].isEditing = false;
+          console.log(r);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
     cancelChange(id) {
       const foundUserIndex = this.users.findIndex((user) => user.id === id);

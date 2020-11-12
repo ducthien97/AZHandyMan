@@ -3,22 +3,22 @@
     <div style='margin-top:10px'>
       <div style='margin-top:10px'>
         <label><strong>Name:</strong></label>
-        <input style='margin-left:10px' type='text' v-model='savedObject.userName' />
+        <input style='margin-left:10px' type='text' v-model='savedObject.name' />
       </div>
 
       <div style='margin-top:10px'>
         <label for=''><strong>Position:</strong></label>
-        <input style='margin-left:10px' type='text' v-model='savedObject.position' />
+        <input style='margin-left:10px' type='text' v-model='savedObject.expertise' />
       </div>
 
       <div style='margin-top:10px'>
         <label><strong>Tel:</strong></label>
-        <input style='margin-left:10px' type='text' v-model='savedObject.phoneNum' />
+        <input style='margin-left:10px' type='text' v-model='savedObject.workerPhoneNumber' />
       </div>
 
       <div style='margin-top:5px'>
         <label><strong>Email:</strong></label>
-        <input style='margin-left:10px ' type='text' v-model='savedObject.email' />
+        <input style='margin-left:10px ' type='text' v-model='savedObject.workerEmail' />
       </div>
 
       <div style='margin-top:5px'>
@@ -56,28 +56,34 @@ export default {
     photoP: {},
     idP: {},
     isEditingP: {},
+    objectID: {
+      type: String,
+    },
   },
   data() {
     return {
       savedObject: {
-        userName: '',
-        position: '',
-        phoneNum: '',
-        email: '',
+        name: '',
+        expertise: '',
+        workerPhoneNumber: '',
+        workerEmail: '',
         photo: '',
         isEditing: '',
+        objectID: '',
       },
     };
   },
   emits: ['save-user', 'cancel-change'],
   beforeMount() {
     console.log('inside mounted method');
-    this.savedObject.userName = this.userNameP;
-    this.savedObject.position = this.positionP;
-    this.savedObject.phoneNum = this.phoneNumP;
-    this.savedObject.email = this.emailP;
+    this.savedObject.name = this.userNameP;
+    this.savedObject.expertise = this.positionP;
+    this.savedObject.workerPhoneNumber = this.phoneNumP;
+    this.savedObject.workerEmail = this.emailP;
     this.savedObject.photo = this.photoP;
     this.savedObject.id = this.idP;
+    this.savedObject.objectID = this.objectID;
+    console.log(this.savedObject.objectID);
     console.log(this.savedObject);
   },
   methods: {
