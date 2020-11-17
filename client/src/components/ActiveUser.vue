@@ -1,30 +1,35 @@
 <template>
   <section>
     <div class='container'>
-      <div v-if='!isEditing'>
+      <div v-if='!userLocal.isEditing'>
         <h2>{{ userName }}</h2>
         <p><strong>Position:</strong> {{ position }}</p>
         <p><strong>Phone Number:</strong> {{ phoneNum }}</p>
         <p><strong>Email:</strong> {{ email }}</p>
-        <p> {{ isEditing }} </p>
       </div>
 
-      <EditUser :idP ='userLocal.id'
-      :userNameP='userLocal.name'
-      :phoneNumP ='userLocal.workerPhoneNumber'
-      :positionP ='userLocal.expertise'
-      :emailP='userLocal.workerEmail'
-      :photoP='userLocal.photo'
-      :objectID='userLocal.objectID'
-      :isEditingP ='userLocal.isEditing'
-      @save-user ='saveUser'
-      @cancel-change ='cancelChange'
-      v-if='isEditing'></EditUser>
       <div class='image'>
         <img :src='photo' />
       </div>
-      <button @click='deleteUser'>Delete User</button>
-      <button @click='editingUser' style='margin-left:10px'>Edit User</button>
+      <b-button type="is-success"
+        v-show="isLoggedIn" style="margin-top:10px" @click='deleteUser'>Delete User</b-button>
+      <b-button
+        type="is-success"
+        @click='editingUser'
+        v-show="isLoggedIn"
+        style='margin-left:10px; margin-top:10px'>Edit User</b-button>
+
+      <EditUser :idP ='userLocal.id'
+        :userNameP='userLocal.name'
+        :phoneNumP ='userLocal.workerPhoneNumber'
+        :positionP ='userLocal.expertise'
+        :emailP='userLocal.workerEmail'
+        :photoP='userLocal.photo'
+        :objectID='userLocal.objectID'
+        :isEditingP ='userLocal.isEditing'
+        @save-user ='saveUser'
+        @cancel-change ='cancelChange'
+      v-if='userLocal.isEditing'></EditUser>
     </div>
   </section>
 </template>
@@ -69,6 +74,7 @@ export default {
   },
   data() {
     return {
+      token: localStorage.getItem('x-auth-token'),
       userLocal: {
         name: this.userName,
         id: this.id,
@@ -82,6 +88,14 @@ export default {
     };
   },
   emits: ['delete-user', 'editing-user', 'cancel-change'],
+  computed: {
+    isLoggedIn() {
+      if (this.token === null) {
+        return false;
+      }
+      return true;
+    },
+  },
   methods: {
     deleteUser() {
       console.log('Calling from deleteUser/ActiveUser.vue');
@@ -90,6 +104,7 @@ export default {
     },
     editingUser() {
       console.log('Calling from editUser/ActiveUser.vue');
+      this.userLocal.isEditing = true;
       this.$emit('editing-user', this.id);
     },
     saveUser(savedObject) {
@@ -99,7 +114,8 @@ export default {
       this.$emit('save-user', this.userLocal);
     },
     cancelChange(id) {
-      this.$emit('cancel-change', id);
+      console.log(id);
+      this.userLocal.isEditing = false;
     },
   },
 };

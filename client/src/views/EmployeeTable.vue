@@ -46,6 +46,7 @@ export default {
         {
           field: 'grade',
           label: 'Rating',
+          sortable: true,
         },
       ],
     };

@@ -45,7 +45,7 @@ const WorkerSchema = new Schema({
         type: String,
         default: 'Unavailable'
     },
-    photoURL:{
+    photo:{
         type: String,
         default: 'https://previews.123rf.com/images/vector2011/vector20111609/vector2011160900023/63151179-handyman-wearing-work-clothes-and-a-belt-with-tool.jpg'
     },

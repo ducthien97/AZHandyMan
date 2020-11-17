@@ -10,7 +10,7 @@
         :id='user.workerID'
         :objectID='user._id'
         :email='user.workerEmail'
-        :photo='user.photoURL'
+        :photo='user.photo'
         :position='user.expertise'
         @delete-user='deleteUser'
         :is-editing ='user.isEditing'
@@ -18,9 +18,9 @@
         @save-user ='saveUser'
         @cancel-change='cancelChange'
       ></ActiveUser>
-      <button @click='toggleNewForm'>Create New User</button>
-      <button @click='deleteAllUser'>Delete All User</button>
-
+      <b-button v-show="isLoggedIn"
+        type="is-success"
+        @click='toggleNewForm'>Create New User</b-button>
       <UserData v-show='newUserForm' @submit-data='addUser'></UserData>
     </div>
   </section>
@@ -63,9 +63,18 @@ export default {
     return {
       newUserForm: false,
       users: null,
+      token: localStorage.getItem('x-auth-token'),
       loading: true,
       errored: false,
     };
+  },
+  computed: {
+    isLoggedIn() {
+      if (this.token === null) {
+        return false;
+      }
+      return true;
+    },
   },
   methods: {
     toggleNewForm() {
@@ -154,10 +163,6 @@ export default {
       this.users[foundUserIndex].isEditing = false;
       console.log('Change canceled');
     },
-    deleteAllUser() {
-      alert('YOU ARE DELETING ALL USERS');
-      this.users = [];
-    },
   },
 };
 </script>
@@ -169,14 +174,14 @@ html {
 
 section {
   margin: 2rem auto;
-  max-width: 40rem;
+  max-width: 60rem;
   border-radius: 12px;
   border: 1px solid #ccc;
   padding: 1rem;
 }
 
 section div img {
-  width: 100%;
-  height: auto;
+  width: 100px;
+  height: 100px;
 }
 </style>

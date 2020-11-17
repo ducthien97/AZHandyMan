@@ -57,7 +57,7 @@ router.post("/:id", (req, res) => {
     res.json(worker);
   });
 });
-router.put("/:id", (req, res, nex) => {
+router.put("/:id", auth, (req, res, nex) => {
   let id = {
     _id: req.params.id,
   };

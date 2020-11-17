@@ -1,7 +1,7 @@
 <template>
   <div class='home'>
     <login-page v-if="loginForm" @close-form='closeLoginForm'></login-page>
-    <button v-if="!loginForm" @click="toggleLoginForm" >Login</button>
+    <b-button type="is-success" v-if="!loginForm" @click="toggleLoginForm">Click to Login</b-button>
     <retired-page v-show="false"></retired-page>
   </div>
 </template>
