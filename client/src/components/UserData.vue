@@ -22,6 +22,11 @@
           <input style='margin-left:10px ' type='text' v-model='enteredEmail' />
         </div>
 
+        <div style='margin-top:5px'>
+          <label><strong>Hourly Charge:</strong></label>
+          <input style='margin-left:10px ' type='number' v-model='enteredCharge' />
+        </div>
+
         <button style='margin-top:10px'>Add User</button>
       </form>
     </div>
@@ -37,6 +42,7 @@ export default {
       enteredEmail: '',
       enteredName: '',
       enteredPosition: '',
+      enteredCharge: '',
     };
   },
   // props:['userName', 'phoneNum', 'email' , 'id']
@@ -51,11 +57,13 @@ export default {
         this.enteredPhoneNum,
         this.enteredEmail,
         this.enteredPosition,
+        this.enteredCharge,
       );
       this.enteredPhoneNum = '';
       this.enteredEmail = '';
       this.enteredName = '';
       this.enteredPosition = '';
+      this.enteredCharge = '';
     },
   },
 };

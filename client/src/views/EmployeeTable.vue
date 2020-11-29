@@ -44,8 +44,8 @@ export default {
           label: 'Email',
         },
         {
-          field: 'grade',
-          label: 'Rating',
+          field: 'hourlyCharge',
+          label: 'Hourly Charge (in $)',
           sortable: true,
         },
       ],

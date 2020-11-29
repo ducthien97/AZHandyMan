@@ -47,7 +47,11 @@ const WorkerSchema = new Schema({
     },
     photo:{
         type: String,
-        default: 'https://previews.123rf.com/images/vector2011/vector20111609/vector2011160900023/63151179-handyman-wearing-work-clothes-and-a-belt-with-tool.jpg'
+        default: 'https://t4.ftcdn.net/jpg/02/53/46/77/360_F_253467743_1bsisN7PyXQ9OkgAMldI7CiIIf7LfwdX.jpg'
+    },
+    hourlyCharge:{
+        type: Number,
+        default: 0.00
     },
     isEditing:{
         type: Boolean,

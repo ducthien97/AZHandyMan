@@ -12,6 +12,7 @@
         :email='user.workerEmail'
         :photo='user.photo'
         :position='user.expertise'
+        :charge='user.hourlyCharge'
         @delete-user='deleteUser'
         :is-editing ='user.isEditing'
         @editing-user ='editingUser'
@@ -81,35 +82,39 @@ export default {
       console.log('Calling from toggle method');
       this.newUserForm = true;
     },
-    addUser(enteredName, enteredPhoneNum, email, expertise) {
-      const newUser = {
-        id: Date.now().toString(),
-        workerID: Date.now().toString(),
-        name: enteredName,
-        workerPhoneNumber: enteredPhoneNum,
-        workerEmail: email,
-        expertise,
-      };
-      axios
-        .post('http://localhost:5000/api/workers', newUser, {
-          headers: {
-            'x-auth-token': localStorage.getItem('x-auth-token'),
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          console.log(localStorage.getItem('token'));
-          this.users.push(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-          console.log(localStorage.getItem('token'));
-          alert(error);
-          this.errored = true;
-        })
-        .finally(() => {
-          this.loading = false;
-        });
+    addUser(enteredName, enteredPhoneNum, email, expertise, hourlyCharge) {
+      let i = 0;
+      for (i = 0; i < 1; i += 1) {
+        const newUser = {
+          id: Date.now().toString(),
+          workerID: Date.now().toString(),
+          name: enteredName,
+          workerPhoneNumber: enteredPhoneNum,
+          workerEmail: email,
+          expertise,
+          hourlyCharge,
+        };
+        axios
+          .post('http://localhost:5000/api/workers', newUser, {
+            headers: {
+              'x-auth-token': localStorage.getItem('x-auth-token'),
+            },
+          })
+          .then((response) => {
+            console.log(response);
+            console.log(localStorage.getItem('token'));
+            this.users.push(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+            console.log(localStorage.getItem('token'));
+            alert(error);
+            this.errored = true;
+          })
+          .finally(() => {
+            this.loading = false;
+          });
+      }
     },
     deleteUser(id) {
       console.log('calling from inside deleteUser/App.vue');
@@ -174,14 +179,14 @@ html {
 
 section {
   margin: 2rem auto;
-  max-width: 60rem;
+  max-width: 32rem;
   border-radius: 12px;
   border: 1px solid #ccc;
   padding: 1rem;
 }
 
-section div img {
-  width: 100px;
-  height: 100px;
+section .image {
+  width: 90%;
+  height: 90%;
 }
 </style>

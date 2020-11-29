@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
-import TestPage from '@/views/TestPage.vue';
-import TheOffice from '../views/TheOffice.vue';
+import OurWorkers from '../views/OurWorkers.vue';
 import EmployeeTable from '../views/EmployeeTable.vue';
+import CustomerRequest from '../views/CustomerRequest.vue';
 
 Vue.use(VueRouter);
 
@@ -21,19 +21,19 @@ const routes = [{
   component: () => import(/* webpackChunkName: 'about' */ '../views/About.vue'),
 },
 {
-  path: '/test',
-  name: 'TestPage',
-  component: TestPage,
-},
-{
   path: '/our-workers',
-  name: 'TheOffice',
-  component: TheOffice,
+  name: 'OurWorkers',
+  component: OurWorkers,
 },
 {
   path: '/employee-table',
   name: 'EmployeeTable',
   component: EmployeeTable,
+},
+{
+  path: '/customer-request',
+  name: 'CustomerRequest',
+  component: CustomerRequest,
 },
 ];
 

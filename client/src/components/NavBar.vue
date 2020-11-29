@@ -18,18 +18,23 @@
       <b-navbar-item href="/our-workers">
         Our Workers
       </b-navbar-item>
-      <b-navbar-item href="/employee-table">
+      <b-navbar-item v-if="isLogin" href="/employee-table">
         Employee Table
+      </b-navbar-item>
+      <b-navbar-item v-if="isLogin" href="/customer-request">
+        Customer Request
       </b-navbar-item>
     </template>
 
     <template slot="end">
       <b-navbar-item tag="div">
+        <p v-if="isLogin" style="margin-right:7px">Currently in Admin Mode</p>
+        <p v-else style="margin-right:7px">Currently in Customer Mode</p>
         <div class="buttons">
-          <a v-if="!isLoggedin" href="/"  class="button is-light">
+          <a v-if="!isLogin" href="/"  class="button is-light">
             Log in
           </a>
-          <a v-if="isLoggedin" @click="logOut"  href="/" class="button is-light">
+          <a v-if="isLogin" @click="logOut"  href="/" class="button is-light">
             Log out
           </a>
         </div>
@@ -40,15 +45,7 @@
 
 <script>
 export default {
-  mounted() {
-    const theToken = localStorage.getItem('x-auth-token');
-    console.log(theToken);
-    if (theToken === null) {
-      this.isLoggedin = false;
-    } else {
-      this.isLoggedin = true;
-    }
-  },
+  mounted() {},
   updated() {
     const theToken = localStorage.getItem('x-auth-token');
     console.log(theToken);
@@ -68,6 +65,11 @@ export default {
     return {
       isLoggedin: false,
     };
+  },
+  computed: {
+    isLogin() {
+      return (localStorage.getItem('x-auth-token') !== null);
+    },
   },
 };
 </script>

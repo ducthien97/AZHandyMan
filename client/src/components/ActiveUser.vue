@@ -1,16 +1,22 @@
 <template>
   <section>
     <div class='container'>
-      <div v-if='!userLocal.isEditing'>
+      <div v-if='!userLocal.isEditing && !isContact'>
         <h2>{{ userName }}</h2>
-        <p><strong>Position:</strong> {{ position }}</p>
+        <p><strong>Expertise:</strong> {{ position }}</p>
         <p><strong>Phone Number:</strong> {{ phoneNum }}</p>
         <p><strong>Email:</strong> {{ email }}</p>
+        <p><strong>Hourly Charge:</strong> ${{ charge }}</p>
+
       </div>
 
       <div class='image'>
         <img :src='photo' />
       </div>
+      <b-button style="margin-top:10px"
+        @click="toogleContact"
+        v-if="!isLoggedIn"
+        type="is-success">Hire Me</b-button>
       <b-button type="is-success"
         v-show="isLoggedIn" style="margin-top:10px" @click='deleteUser'>Delete User</b-button>
       <b-button
@@ -18,6 +24,11 @@
         @click='editingUser'
         v-show="isLoggedIn"
         style='margin-left:10px; margin-top:10px'>Edit User</b-button>
+
+      <customer-data
+        v-if="!isLoggedIn && isContact"
+        :name='userLocal.name'>
+      </customer-data>
 
       <EditUser :idP ='userLocal.id'
         :userNameP='userLocal.name'
@@ -29,17 +40,18 @@
         :isEditingP ='userLocal.isEditing'
         @save-user ='saveUser'
         @cancel-change ='cancelChange'
-      v-if='userLocal.isEditing'></EditUser>
+        v-if='userLocal.isEditing'></EditUser>
     </div>
   </section>
 </template>
 
 <script>
 import EditUser from './EditUser.vue';
+import CustomerData from './CustomerData.vue';
 
 export default {
   name: 'ActiveUser',
-  components: { EditUser },
+  components: { EditUser, CustomerData },
   props: {
     objectID: {
       type: String,
@@ -65,6 +77,7 @@ export default {
     isEditing: {
       type: Boolean,
     },
+    charge: {},
   },
   updated() {
     console.log('Hello from updated()/Active.vue');
@@ -85,9 +98,10 @@ export default {
         isEditing: this.isEditing,
         objectID: this.objectID,
       },
+      isContact: false,
     };
   },
-  emits: ['delete-user', 'editing-user', 'cancel-change'],
+  emits: ['delete-user', 'editing-user', 'cancel-change', 'toogle-contact'],
   computed: {
     isLoggedIn() {
       if (this.token === null) {
@@ -116,6 +130,10 @@ export default {
     cancelChange(id) {
       console.log(id);
       this.userLocal.isEditing = false;
+    },
+    toogleContact() {
+      console.log(this.isContact);
+      this.isContact = !this.isContact;
     },
   },
 };

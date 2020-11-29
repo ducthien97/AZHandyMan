@@ -75,40 +75,6 @@ router.put("/:id", auth, (req, res, nex) => {
   });
 });
 
-//Edit worker Route
-// router.put('/:id', (req, res) => {
-//   var newData = req.body;
-//   var sumCourses = 0;
-//   var courses = [...newData.courses];
-//   for (var j = 0; j < newData.courses.length; j++) {
-//     var scores = [...newData.courses[j].scores];
-//     var sum = 0;
-//     //console.log(scores)
-//     for (var i = 0; i < scores.length; i++) {
-//       sum += scores[i];
-//     }
-//     //console.log('sum: ' + sum)
-//     var average = sum / scores.length;
-//     //console.log('average:' + average)
-//     newData.courses[j].courseAverage = Math.round(average.toFixed(2)); //console.log(Newworker.courses[j].courseAverage)
-
-//     sumCourses += newData.courses[j].courseAverage;
-//   }
-//   //console.log(sumCourses);
-//   var gpa = sumCourses / courses.length;
-//   newData.semesterGPA = (gpa / 100) * 4;
-//   worker.findOneAndUpdate(req.params.id, { $set: newData }, function (
-//     err,
-//     worker
-//   ) {
-//     if (err) {
-//       res.status(500).json({ err: err });
-//     } else {
-//       res.json({ update: 'Success' });1
-//     }
-//   });
-// });
-
 //Delete worker Route
 router.delete("/:id", auth, (req, res) => {
   WorkerS.findById(req.params.id)
