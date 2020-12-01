@@ -15,6 +15,7 @@ export default {
       .then((res) => {
         this.pulledData = res.data;
         console.log(this.pulledData);
+        console.log(this.$store.state.authToken);
       })
       .catch((err) => {
         console.log(err);

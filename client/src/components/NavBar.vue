@@ -45,19 +45,14 @@
 
 <script>
 export default {
-  mounted() {},
-  updated() {
-    const theToken = localStorage.getItem('x-auth-token');
-    console.log(theToken);
-    if (theToken === null) {
-      this.isLoggedin = false;
-    } else {
-      this.isLoggedin = true;
-    }
+  mounted() {
+    // console.log(this.$store.getters.getToken);
+    // console.log(this.$store.state.authToken);
   },
   methods: {
     logOut() {
       localStorage.removeItem('x-auth-token');
+      this.$store.commit('removeToken');
       this.$buefy.toast.open({ duration: 5000, message: 'Logged out success' });
     },
   },

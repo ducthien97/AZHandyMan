@@ -9,6 +9,7 @@
       5-10 years. The site also provide a platform for team productivity management.<br />
     </p>
     <a href="https://github.com/ducthien97/AZHandyMan">GitHub</a>
+    <footer> Thien Duong &#174;| 2020</footer>
   </div>
 </template>
 <script>

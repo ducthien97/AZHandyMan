@@ -1,5 +1,4 @@
 <template>
-  <section>
     <div>
       <h2 style="font-size:2rem">Our Team</h2>
       <ActiveUser
@@ -24,7 +23,6 @@
         @click='toggleNewForm'>Create New User</b-button>
       <UserData v-show='newUserForm' @submit-data='addUser'></UserData>
     </div>
-  </section>
 </template>
 
 <script>
@@ -179,14 +177,15 @@ html {
 
 section {
   margin: 2rem auto;
-  max-width: 32rem;
+  max-width: 60rem;
   border-radius: 12px;
   border: 1px solid #ccc;
   padding: 1rem;
 }
 
 section .image {
-  width: 90%;
-  height: 90%;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>

@@ -8,7 +8,6 @@ const db =
 //const db = 'mongodb+srv://<username>:<password>@cluster0.madns.mongodb.net/<dbname>?retryWrites=true&w=majority';
 //const courses = require('./routes/api/courses');
 const admins = require('./routes/api/admins');
-const students = require('./routes/api/students');
 const requests = require('./routes/api/requests');
 const auth = require('./routes/api/auth');
 const bodyParser = require('body-parser');
@@ -33,7 +32,7 @@ app.use('/api/auth', auth);
 
 //app.use('/api/courses', courses);
 app.use('/api/workers', workers);
-app.use('/api/students', students);
+
 app.use('/api/requests', requests);
 app.listen(5000, function (err) {
   console.log('route working');

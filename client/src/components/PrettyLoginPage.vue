@@ -62,6 +62,7 @@ export default {
           localStorage.setItem('x-auth-token', response.data.token);
           this.$buefy.toast.open({ duration: 5000, message: 'Login success! You can now change worker data' });
           this.$router.go(-1);
+          this.$store.commit('inputToken', localStorage.getItem('x-auth-token'));
         })
         .catch((error) => {
           console.log(error);

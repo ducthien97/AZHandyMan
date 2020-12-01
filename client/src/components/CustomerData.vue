@@ -34,7 +34,9 @@
 
       <div style="margin-top:7px">
         <b-button size='is-small' type='is-success' @click="submitRequest" >Submit</b-button>
-        <b-button size='is-small' type="is-danger" style="margin-left:5px" >Cancel</b-button>
+        <b-button size='is-small' type="is-danger"
+          @click="clearData"
+          style="margin-left:5px" >Clear</b-button>
       </div>
     </form>
   </div>
@@ -58,6 +60,9 @@ export default {
     };
   },
   methods: {
+    clearData() {
+      this.enteredCustomer = '';
+    },
     submitRequest() {
       const newRequest = {
         workerContacted: this.name,
