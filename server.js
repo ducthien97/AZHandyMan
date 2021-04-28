@@ -26,7 +26,9 @@ function registerEnvironmentVariables() {
 }
 
 registerEnvironmentVariables();
-connectDB()
+console.log(process.env)
+connectDB(process.env.MONGO_URL)
+
 
 
 
