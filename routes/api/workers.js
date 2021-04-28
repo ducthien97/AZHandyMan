@@ -3,7 +3,7 @@ const router = express.Router();
 //const cors = require('cors');
 const auth = require("../../middleware/auth");
 const WorkerS = require("../../models/Worker");
-//const Job = require('../../models/Worker');
+
 //Get all worker
 
 router.get("/", (req, res) => {
