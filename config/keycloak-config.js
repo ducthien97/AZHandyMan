@@ -20,7 +20,7 @@ function initKeyCloak() {
                     clientId : process.env.KEYCLOAK_CLIENT,
                     bearerOnly: true,
                     serverUrl: authURL,
-                    realm = process.env.KEYCLOAK_REALM,
+                    realm : process.env.KEYCLOAK_REALM,
                     realmPublicKey: pubKey, 
                 };
 

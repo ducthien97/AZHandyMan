@@ -7,6 +7,7 @@ const WorkerS = require("../../models/Worker");
 //Get all worker
 
 router.get("/", (req, res) => {
+  console.log("GET route from " + process.pid);
   res.header("Access-Control-Allow-Origin", "*");
   WorkerS.find()
     .sort({ name: -1 })
